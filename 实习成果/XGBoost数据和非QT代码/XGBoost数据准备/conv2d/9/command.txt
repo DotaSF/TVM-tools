@@ -1,0 +1,52 @@
+set *0x40c09030 = 04
+set *0x40c09030 = 0
+
+#write command
+set *0x4300007c = 0x01010008
+set *0x43000078 = 0x10003030
+set *0x43000074 = 0x10101011
+set *0x43000070 = 0x10000000
+set *0x4300006c = 0x00000000
+set *0x43000068 = 0x00000000
+set *0x43000064 = 0x00000000
+set *0x43000060 = 0x00000000
+set *0x4300005c = 0x00000000
+set *0x43000058 = 0x3f800000
+set *0x43000054 = 0x3f800000
+set *0x43000050 = 0x00100403
+set *0x4300004c = 0x80382200
+set *0x43000048 = 0x00102003
+set *0x43000044 = 0x80382200
+set *0x43000040 = 0x00000220
+set *0x4300003c = 0x00000000
+set *0x43000038 = 0x00000000
+set *0x43000034 = 0x02000000
+set *0x43000030 = 0x04c00000
+set *0x4300002c = 0x00000000
+set *0x43000028 = 0x00000000
+set *0x43000024 = 0x00000000
+set *0x43000020 = 0x00000000
+set *0x4300001c = 0x04000000
+set *0x43000018 = 0x00000000
+set *0x43000014 = 0x00000000
+set *0x43000010 = 0x00000000
+set *0x4300000c = 0x00000000
+set *0x43000008 = 0x00000000
+set *0x43000004 = 0x00000000
+set *0x43000000 = 0x00000000
+set $newfeature_addr = 0x80000000
+set $newkernel_addr = $newfeature_addr + 0x02000000
+set $newquant_addr = $newfeature_addr + 0x04000000
+set $start_addr = $newfeature_addr + 0x04c00000
+set $end_addr = $start_addr + 0x31000
+
+restore /root/NPU_test/data/conv2d/9/input_int8_nc4hw4.bin binary $newfeature_addr
+restore /root/NPU_test/data/conv2d/9/weight_data_npu_int8.bin binary $newkernel_addr
+restore /root/NPU_test/data/conv2d/9/bottom_blob_int8_descales.bin binary $newquant_addr
+
+set *0x4300011c = 0x00000011
+set *0x43000080 = 0x00000001
+
+dump ihex memory /root/NPU_test/data/conv2d/9/NPU输出结果/output.bin $start_addr $end_addr
+dump ihex memory /root/NPU_test/data/conv2d/9/NPU输出结果/iq.bin 0x43000084 0x43000088
+dump ihex memory /root/NPU_test/data/conv2d/9/cycle.bin 0x43000120 0x43000124

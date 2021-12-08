@@ -1,0 +1,8 @@
+﻿  C_api_test.cpp
+d:\demo\c_api_test\c_api_test\c_api_test.cpp(18): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+d:\demo\c_api_test\c_api_test\c_api_test.cpp(22): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+d:\demo\c_api_test\c_api_test\c_api_test.cpp(60): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+  正在生成代码
+  All 12 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  C_api_test.vcxproj -> D:\demo\C_api_test\x64\Release\C_api_test.exe

@@ -1,0 +1,4 @@
+conv2d是数据文件，里面包含多次的算子测试对应特征和运行时间
+transformer.py用于将保存在conv2d的测试文件下的.txt和.bin转化为以空格间隔的数据，保存在train.txt中
+housing.txt是波士顿数据集
+train.txt是生成的数据，其保存格式为：特征+结果

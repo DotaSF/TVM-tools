@@ -1,0 +1,16 @@
+set *0x40c09030 = 04
+set *0x40c09030 = 0
+
+set $newfeature_addr = 0x80000000
+set $newkernel_addr = $newfeature_addr + 0x02000000
+set $newquant_addr = $newfeature_addr + 0x04000000
+set $start_addr = $newfeature_addr + 0x04c00000
+set $end_addr = $start_addr + 0x4140
+
+restore /root/NPU_test/data/conv2d/RANDOM/1/input_int16_nc4hw4.bin binary $newfeature_addr
+
+set *0x4300011c = 0x00000011
+set *0x43000080 = 0x00000001
+
+dump ihex memory /root/NPU_test/data/conv2d/RANDOM/1/NPU输出结果/output.bin $start_addr $end_addr
+dump ihex memory /root/NPU_test/data/conv2d/RANDOM/1/NPU输出结果/iq.bin 0x43000084 0x43000088
